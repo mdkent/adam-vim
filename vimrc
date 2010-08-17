@@ -17,7 +17,12 @@ endif
 set nocompatible
 
 " ADDED BY ME
+set hidden
 set number
+set wildmenu
+set wildmode=list:longest
+set title
+
 set softtabstop=2
 set shiftwidth=2
 set tabstop=2
@@ -26,9 +31,9 @@ set autoindent
 set expandtab
 colorscheme twilight 
 if has("gui_gtk2")
-  set guifont=Bitstream\ Vera\ Sans\ Mono\ 14
+  set guifont=Bitstream\ Vera\ Sans\ Mono\ 16
 else
-  set guifont=Bitstream\ Vera\ Sans\ Mono:h14
+  set guifont=Inconsolata:h16
 endif
 set ignorecase
 set vb " turns off visual bell
@@ -63,28 +68,55 @@ let g:gist_detect_filetype = 1
 set grepprg=ack
 set grepformat=%f:%l:%m
 
-map <leader>t :FuzzyFinderTextMate<CR>
+map <leader>t :CommandT<CR>
 map <leader>b :FuzzyFinderBuffer<CR>
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
-map <leader>r :RunSpec<CR>
-map <leader>R :RunSpecs<CR>
+map <leader>f :LustyFilesystemExplorer<CR>
+map <leader>r :LustyFilesystemExplorerFromHere<CR>
 map <leader>l :TlistToggle<CR>
+map <leader>s :RunSpec<CR>
+map <leader>S :RunSpecs<CR>
 
+" Command T
+
+let g:CommandTMaxFiles=30000
+let g:CommandTMaxDepth=30
+let g:CommandTMaxHeight=20
+
+" Hold command to do the g for softwrap
+vmap <D-j> gj
+vmap <D-k> gk
+vmap <D-4> g$
+vmap <D-6> g^
+vmap <D-0> g^
+nmap <D-j> gj
+nmap <D-k> gk
+nmap <D-4> g$
+nmap <D-6> g^
+nmap <D-0> g^
+
+" Suppress lustyjuggler warnings
+let g:LustyJugglerSuppressRubyWarning = 1
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-set backupdir=~/.vimswaps,/tmp
+set backupdir=~/.vimbackup//,/tmp//
+set directory=~/.vimswaps//,/tmp//
 
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
 else
   set backup		" keep a backup file
 endif
-set history=50		" keep 50 lines of command line history
+set history=500		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
+
+if has("gui_running")
+  set guioptions=egmrt
+endif
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -138,6 +170,19 @@ if has("autocmd")
 
   augroup END
 
+
+  if exists("did\_load\_filetypes")
+
+    finish
+
+  endif
+
+  augroup markdown
+
+    au! BufRead,BufNewFile *.mkd   setfiletype mkd
+
+  augroup END
+
   augroup mkd
 
     autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:>
@@ -149,3 +194,8 @@ else
   set autoindent		" always set autoindenting on
 
 endif " has("autocmd")
+
+let clj_highlight_builtins = 1
+let clj_highlight_contrib = 1
+let clj_paren_rainbow = 1
+let python_highlight_all = 1
