@@ -5,6 +5,23 @@ It includes several plugins: Git-vim, NERDtree, FuzzyFinder, FuzzyFinderTextmate
 
 To use, copy this directory to ~/.vim and symlink ~/.vim/vimrc to ~/.vimrc.
 
+To use the gist plugin 
+
+git config --global github.user <user>
+git config --global github.token <api key from account info>
+
+For complete support install
+
+* ctags
+* atk
+* RedCloth
+
+Compile command-t support
+
+cd ~/.vim/ruby/command-t
+ruby extconf.rb
+make 
+
 Once you are running, in command mode: 
 
 == Introduction
@@ -110,17 +127,23 @@ examples.  An asterisk (*) is used to denote the cursor position.
 [,rf] = :TextileREdnerFile - render to a file
 
 == Keymaps
-[,d] = Toggle NERDtree
-[,t] = FuzzyFinderTextmate
+[,t] = CommandT
 [,b] = FuzzyBufferFinder
+[,d] = Toggle NERDtree
+[,F] = LustyFilesystemExplorer
+[,f] = FuzzyFinderFile
+[,r] = FuzzyFinderMruFile
+[,R] = LustyFilesystemExplorerFromHere 
 [,l] = TListToggle 
-[,gd] :GitDiff
-[,gD] :GitDiff --cached
-[,gs] :GitStatus
-[,gl] :GitLog
-[,ga] :GitAdd
-[,gA] :GitAdd <cfile>
-[,gc] :GitCommit
+[,s] = RunSpec
+[,S] = RunSpecs
+[,gd] = git diff
+[,gD] = git diff --cached
+[,gs] = git status
+[,gl] = git log
+[,ga] = git add
+[,gc] = git commit
+[,gb] = git blame
 
 === In git-status buffer
 [<Enter>]    :GitAdd <cfile>

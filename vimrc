@@ -71,11 +71,21 @@ set grepformat=%f:%l:%m
 map <leader>t :CommandT<CR>
 map <leader>b :FuzzyFinderBuffer<CR>
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
-map <leader>f :LustyFilesystemExplorer<CR>
-map <leader>r :LustyFilesystemExplorerFromHere<CR>
+map <leader>F :LustyFilesystemExplorer<CR>
+map <leader>f :FuzzyFinderFile<CR>
+map <leader>r :FuzzyFinderMruFile<CR>
+map <leader>R :LustyFilesystemExplorerFromHere<CR>
 map <leader>l :TlistToggle<CR>
 map <leader>s :RunSpec<CR>
 map <leader>S :RunSpecs<CR>
+map <leader>gd :Gdiff<CR>
+map <leader>gD :Gdiff --cached<CR>
+map <leader>gs :Gstatus<CR>
+map <leader>gl :Glog<CR>
+map <leader>ga :Gwrite<CR>
+map <leader>gc :Gcommit<CR>
+map <leader>gb :Gblame<CR>
+
 
 " Command T
 
